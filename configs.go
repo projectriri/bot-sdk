@@ -1,10 +1,5 @@
 package botsdk
 
-type UpdateConfig struct {
-	BufferSize      int
-	PreloadUserInfo bool
-}
-
 type SendConfig struct {
 	MessageConfig
 	ChatConfig
@@ -13,37 +8,30 @@ type SendConfig struct {
 const (
 	TypeText = iota
 	TypeImage
-	TypeSticker // TG Only
-	TypeRecord  // QQ Only
+	TypeSticker
+	TypeRecord
 	TypeDeleteMessage
-	TypeEditMessage // TG Only
+	TypeEditMessage
 )
 
 const (
-	FormatPlainText   = iota
-	FormatMarkdown    // TG Only
-	FormatHTML        // TG Only
-	FormatRawCQString // QQ Only
-)
-
-const (
-	UploadModeBase64 = iota
-	UploadModeLocal
-	UploadModeWeb
+	FormatPlainText = iota
+	FormatMarkdown
+	FormatHTML
+	FormatRawCQString
 )
 
 type MessageConfig struct {
 	MediaType         int
 	ParseMode         int
-	ReplyToMessageID  int64 // TG Only
-	DisableWebPreview bool  // TG Only
-	UploadMode        int   // QQ Only
-	NoCache           bool  // QQ Only (UploadModeWeb)
+	MessageID         int64
+	ReplyToMessageID  int64
+	DisableWebPreview bool
+	NoCache           bool
 }
 
 type ChatConfig struct {
-	Messenger string
-	ChatID    int64
-	ChatType  string
-	Title     string
+	ChatID   int64
+	ChatType string
+	Title    string
 }

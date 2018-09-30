@@ -2,10 +2,12 @@ package botsdk
 
 type Message interface {
 	MessageID() int64
+	Bot() Bot
 	Type() string
 	Text() string
 	Chat() Chat
 	From() User
+	Reply(config MessageConfig, message interface{}) (interface{}, error)
 }
 
 type Chat interface {
@@ -20,19 +22,14 @@ type User interface {
 	FirstName() string
 	LastName() string
 	PrivateChat() ChatConfig
+	At(parseMode int) string
 }
 
 type Update interface {
 	UpdateID() int64
 	Bot() Bot
-	Chat() Chat
-	From() User
-	Type() string
-	Text() string
 	IsMessage() bool
 	Message() Message
-
-	Reply(config MessageConfig, message interface{}) (interface{}, error)
 }
 
 // UpdateChannel is a channel for getting update.
